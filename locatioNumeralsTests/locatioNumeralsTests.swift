@@ -30,10 +30,17 @@ class locatioNumeralsTests: XCTestCase {
     }
 
     func testConvertingLargeIntegerToLocationNumeral() {
-        let largeInteger = 67108864*2
+        let largeInteger = 67108864*2+1
         let locationNumeralForInteger = locationNumeralConverter.convertIntegerToLocationNumeral(largeInteger)
 
-        XCTAssertEqual(locationNumeralForInteger, "zzzz")
+        XCTAssertEqual(locationNumeralForInteger, "azzzz")
+    }
+
+    func testConvertingExtremelyLargeIntegerToLocationNumeral() {
+        let largeInteger = 67108864*200+1+2+4
+        let locationNumeralForInteger = locationNumeralConverter.convertIntegerToLocationNumeral(largeInteger)
+        
+        XCTAssertEqual(locationNumeralForInteger, "abc + z * 400")
     }
 
     func testConvertingLocationNumeralToInteger() {

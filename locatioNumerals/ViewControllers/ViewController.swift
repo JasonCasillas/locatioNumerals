@@ -39,13 +39,12 @@ class ViewController: UIViewController {
 
     func runConversionsForValue(initialValue:String) {
         if initialValue.onlyContainsNumericValues() {
-            let initialInteger:Int! = Int(initialValue)
-            let currentSlowdownValue = 99999999999
-            if initialInteger <= currentSlowdownValue {
+            if let initialInteger:Int = Int(initialValue) {
                 let locationNumeral = locationNumeralConverter.convertIntegerToLocationNumeral(initialInteger)
                 convertedValueLabel.text = locationNumeral
             } else {
-                convertedValueLabel.text = "Numbers larger than \(currentSlowdownValue) take too long to convert and don't fit on the screen. We could perform the calculation on a background process, animate the fact that it is processing, and put the end result on a scrollview, but this is just a sample app..."
+                let maximumInteger = Int.max
+                convertedValueLabel.text = "Numbers larger than \(maximumInteger) are not currently supported."
             }
             abbreviatedValueLabel.text = ""
         } else if initialValue.onlyContainsAlphabeticalValues() {

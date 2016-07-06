@@ -14,6 +14,8 @@ class LocationNumeralConverter: NSObject {
     private let lettersToIntegerRepresentationsDictionary: [Character: Int]
     private let integerRepresentationsToLettersDictionary: [Int: Character]
 
+    let maxInlineZs = 10
+
     override init() {
         lettersArray = Array("abcdefghijklmnopqrstuvwxyz".characters)
 
@@ -36,9 +38,11 @@ class LocationNumeralConverter: NSObject {
     func convertIntegerToLocationNumeral(integer:Int) -> String {
         // Might want to add error checking for integers < 1, but for this test, we'll only pass in correct data
         // Max convertible value will be limited by max integer allowed by Swift, but calculations will slow down the app greatly before that
-        var locationNumeralsArray:[Character] = []
+        let zInteger:Int! = lettersToIntegerRepresentationsDictionary["z"]
+        let numberOfZsForInteger:Int! = integer/zInteger
 
-        var remainingInteger = integer
+        var locationNumeralsArray:[Character] = []
+        var remainingInteger = integer - (numberOfZsForInteger * zInteger)
         while remainingInteger > 0 {
             let integerForNextLocationNumeral = largestIntegerFromArrayThatIsLessThanOrEqualToInteger(integerRepresentationsArray, integer: remainingInteger)
             let nextLocationNumeral:Character! = integerRepresentationsToLettersDictionary[integerForNextLocationNumeral]
@@ -46,8 +50,37 @@ class LocationNumeralConverter: NSObject {
             remainingInteger = remainingInteger - integerForNextLocationNumeral
         }
 
-        let locationNumeral = String(locationNumeralsArray.sort())
+        var locationNumeral:String = ""
+        if locationNumeralsArray.count > 0 {
+            locationNumeral = String(locationNumeralsArray.sort())
+        }
+
+        if numberOfZsForInteger > 0 {
+            let stringForZs = zStringToDisplay(numberOfZsForInteger)
+            if locationNumeral.isEmpty {
+                locationNumeral = stringForZs
+            } else {
+                if numberOfZsForInteger > maxInlineZs {
+                    locationNumeral = "\(locationNumeral) + \(stringForZs)"
+                } else {
+                    locationNumeral = "\(locationNumeral)\(stringForZs)"
+                }
+            }
+        }
+
         return locationNumeral
+    }
+
+    func zStringToDisplay(numberOfZs:Int) -> String {
+        if numberOfZs > maxInlineZs {
+            return "z * \(numberOfZs)"
+        } else {
+            var zsString = ""
+            for _ in 1...numberOfZs {
+                zsString.append("z" as Character)
+            }
+            return zsString
+        }
     }
 
     func largestIntegerFromArrayThatIsLessThanOrEqualToInteger(integerArray: [Int], integer: Int) -> Int {
