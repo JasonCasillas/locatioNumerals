@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="locatioNumerals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Numeral or Integer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R6i-7o-xSF" userLabel="initialValueTextField">
+                                <rect key="frame" x="20" y="20" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editingChangedForInitialValueTextField:" destination="BYZ-38-t0r" eventType="editingChanged" id="oM9-fe-4Gc"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Converted Value" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKf-rC-Cb7" userLabel="convertedValueLabel">
+                                <rect key="frame" x="20" y="58" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Abbreviated Value" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1U-2S-2x4" userLabel="abbreviatedValueLabel">
+                                <rect key="frame" x="20" y="87" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VKf-rC-Cb7" firstAttribute="trailing" secondItem="X1U-2S-2x4" secondAttribute="trailing" id="0PC-zI-GNt"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="R6i-7o-xSF" secondAttribute="leading" id="81P-AF-YAD"/>
+                            <constraint firstItem="X1U-2S-2x4" firstAttribute="top" secondItem="VKf-rC-Cb7" secondAttribute="bottom" constant="8" id="9ah-tp-Xsx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R6i-7o-xSF" secondAttribute="trailing" id="D55-dP-cRv"/>
+                            <constraint firstItem="R6i-7o-xSF" firstAttribute="leading" secondItem="VKf-rC-Cb7" secondAttribute="leading" id="FBj-rR-DW7"/>
+                            <constraint firstItem="R6i-7o-xSF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Iln-dh-Shh"/>
+                            <constraint firstItem="VKf-rC-Cb7" firstAttribute="leading" secondItem="X1U-2S-2x4" secondAttribute="leading" id="JRi-5s-RbR"/>
+                            <constraint firstItem="R6i-7o-xSF" firstAttribute="trailing" secondItem="VKf-rC-Cb7" secondAttribute="trailing" id="OaU-0L-8pM"/>
+                            <constraint firstItem="VKf-rC-Cb7" firstAttribute="top" secondItem="R6i-7o-xSF" secondAttribute="bottom" constant="8" id="odO-hb-e1D"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="abbreviatedValueLabel" destination="X1U-2S-2x4" id="fgj-2H-Dzr"/>
+                        <outlet property="convertedValueLabel" destination="VKf-rC-Cb7" id="5OG-h5-MDg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="435" y="356"/>
+        </scene>
+    </scenes>
+</document>
